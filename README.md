@@ -1,1 +1,3 @@
-# tues-postgres
+# Decisions I made and why
+
+I made three tables: rooms, device_kinds and devices, so a room name or a kind name is written once and not repeated on every device row. Every table has its own id as PRIMARY KEY, and the inventory number is only UNIQUE NOT NULL, because it is a number printed on a sticker and a sticker can be misprinted or replaced, and then I would have to change a key that other data might point to. devices.room_id is a nullable FOREIGN KEY, so a device in storage simply has no room (NULL) instead of a dummy "storage" room. I do not store the age of a device, only the purchase date (type DATE), because age changes every day and AGE() calculates it correctly in the query.
